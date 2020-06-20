@@ -1,10 +1,47 @@
-<table style="background-color: gray;" *ngFor="let datum of data">
-  <tr>
-    <td>country:</td>
-    <td>{{ datum.Country }}</td>
-    <td></td>
-    <td>active:</td>
-    <td>{{ datum.Active }}</td>
-  </tr>
-  <tr></tr>
-</table>
+<div id="all">
+  <h2>كورونا ليبيا</h2>
+  <h3>covid-19</h3>
+  <div id="cases" class="container">
+    <div id="date">
+      اخر تحديث <b>{{ data[data.length - 1].Date | dateAgo }}</b>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div id="active" class="divs">
+          <div class="info">
+            <h3>{{ data[data.length - 1].Active }}</h3>
+            <p>الجارية حالياً</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div id="confirmed" class="divs">
+          <div class="info">
+            <h3>{{ data[data.length - 1].Confirmed }}</h3>
+            <p>تم التأكيد</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div id="deaths" class="divs">
+          <div class="info">
+            <h3>{{ data[data.length - 1].Deaths }}</h3>
+            <p>حالات الوفاة</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div id="recovered" class="divs">
+          <div class="info">
+            <h3>{{ data[data.length - 1].Recovered }}</h3>
+            <p>حالات الشفاء</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

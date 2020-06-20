@@ -1,0 +1,44 @@
+#all {
+  margin: 2%;
+  padding: 5%;
+  text-align: center;
+  //   border: 1px solid black;
+
+  #cases {
+    margin-top: 5%;
+
+    #date {
+      margin-bottom: 3%;
+    }
+
+    .divs {
+      border-radius: 20px;
+      height: 10em;
+      margin: 3%;
+      padding: 8%;
+      color: white;
+      transition: all ease-in-out 0.3s;
+
+      &:hover {
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+        // transform: scaleX(1.1);
+      }
+    }
+
+    #active {
+      background: linear-gradient(to right, #00b4db, #0083b0);
+    }
+
+    #confirmed {
+      background: linear-gradient(to right, #f46b45, #eea849);
+    }
+
+    #deaths {
+      background: linear-gradient(to right, #ed213a, #93291e);
+    }
+
+    #recovered {
+      background: linear-gradient(to right, #11998e, #38ef7d);
+    }
+  }
+}
