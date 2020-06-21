@@ -1,6 +1,16 @@
 <div id="all">
-  <h2>كورونا ليبيا</h2>
-  <h3>covid-19</h3>
+  <h4>covid-19 in</h4>
+  <!-- <h1>{{ data[data.length - 1].Country }}</h1> -->
+  <div class="form-group">
+    <select
+      class="form-control"
+      id="countries"
+      (change)="pickCountry($event.target.value)"
+    >
+      <option *ngFor="let country of countriesArr">{{ country }}</option>
+    </select>
+  </div>
+
   <div id="cases" class="container">
     <div id="date">
       اخر تحديث <b>{{ data[data.length - 1].Date | dateAgo }}</b>

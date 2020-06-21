@@ -8,18 +8,34 @@ import { HttpService } from '../http.service';
 })
 export class HomeComponent implements OnInit {
   data: any;
+  countriesArr = [];
+  pickedCountry = 'Libya';
 
   constructor(private _http: HttpService) {}
 
   ngOnInit() {
     this.viewData();
+    this.viewCountries();
   }
 
   viewData() {
-    this._http.getData().forEach((data) => {
-      console.log('CONNENCTED ===>>> ', data);
+    this._http.getData(this.pickedCountry).forEach((data) => {
       this.data = data;
-      return data;
+      return this.data;
     });
+  }
+
+  viewCountries() {
+    this._http.getCountries().forEach((data) => {
+      for (var country in data) {
+        this.countriesArr.push(data[country].Country);
+      }
+      return this.countriesArr.sort();
+    });
+  }
+
+  pickCountry(country) {
+    this.pickedCountry = country;
+    this.viewData();
   }
 }

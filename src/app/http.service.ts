@@ -7,7 +7,11 @@ import { HttpClient } from '@angular/common/http';
 export class HttpService {
   constructor(private http: HttpClient) {}
 
-  getData() {
-    return this.http.get('https://api.covid19api.com/total/country/libya');
+  getData(country) {
+    return this.http.get(`https://api.covid19api.com/total/country/${country}`);
+  }
+
+  getCountries() {
+    return this.http.get('https://api.covid19api.com/countries');
   }
 }
