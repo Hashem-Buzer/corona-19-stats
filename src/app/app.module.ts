@@ -7,9 +7,19 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
+import { ArabicComponent } from './arabic/arabic.component';
+import { NavbarComponent } from './home/navbar/navbar.component';
+import { FooterComponent } from './home/footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, DateAgoPipe],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    DateAgoPipe,
+    ArabicComponent,
+    NavbarComponent,
+    FooterComponent,
+  ],
   imports: [HttpClientModule, BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

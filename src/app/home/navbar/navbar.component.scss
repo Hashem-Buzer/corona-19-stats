@@ -1,0 +1,33 @@
+#navbar {
+  width: 100%;
+  z-index: 2;
+  background-color: #191e20;
+  padding: 0.5% 5%;
+  font-size: 1.3em;
+
+  // .navbar-brand {
+  //   font-size: 1.3em;
+  //   color: whitesmoke;
+  //   margin-right: 10%;
+  // }
+
+  ul {
+    width: 100%;
+    //   background-color: red;
+    margin-left: 90%;
+
+    li {
+      // background-color: blue;
+      margin-right: 2%;
+
+      a {
+        color: rgb(168, 166, 166);
+        transition: all ease-in-out 0.3s;
+
+        &:hover {
+          color: whitesmoke;
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -15,13 +16,21 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getLocation();
-    this.viewData();
     this.viewCountries();
+    this.viewData();
   }
 
   viewData() {
     this._http.getData(this.pickedCountry).forEach((data) => {
       this.data = data;
+      this.data.length === 0 &&
+        Swal.fire({
+          icon: 'warning',
+          title: 'لا يوجد نتائج على هذه الدولة',
+          timer: 1500,
+          showConfirmButton: false,
+        });
+
       return this.data;
     });
   }
