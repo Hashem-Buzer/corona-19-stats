@@ -1,10 +1,14 @@
 #all {
-  margin: 2%;
-  padding: 5%;
+  width: 100%;
+
+  // margin: 2%;
+  padding: 10%;
   text-align: center;
+  background: linear-gradient(to right, #afb8af, #ffffff);
+
   //   border: 1px solid black;
 
-  #countries {
+  .countries {
     width: 30%;
     margin: 0 35%;
     background: rgba(255, 255, 255, 0.705);

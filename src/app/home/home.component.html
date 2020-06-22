@@ -4,11 +4,10 @@
   <!-- <h1>{{ data[data.length - 1].Country }}</h1> -->
   <div class="form-group">
     <select
-      class="form-control"
-      id="countries"
+      class="form-control countries"
       (change)="pickCountry($event.target.value)"
     >
-      <optgroup label="Location">
+      <optgroup class="countries" label="Location">
         <option selected>{{ pickedCountry }}</option>
       </optgroup>
 
