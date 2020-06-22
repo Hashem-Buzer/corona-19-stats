@@ -10,7 +10,8 @@ import Swal from 'sweetalert2';
 export class HomeComponent implements OnInit {
   data: any;
   countriesArr = [];
-  pickedCountry = 'Libya';
+  pickedCountry: any;
+  locCountry: any;
 
   constructor(private _http: HttpService) {}
 
@@ -23,13 +24,21 @@ export class HomeComponent implements OnInit {
   viewData() {
     this._http.getData(this.pickedCountry).forEach((data) => {
       this.data = data;
-      this.data.length === 0 &&
-        Swal.fire({
-          icon: 'warning',
-          title: 'لا يوجد نتائج على هذه الدولة',
-          timer: 1500,
-          showConfirmButton: false,
-        });
+      this.data.length === 0
+        ? Swal.fire({
+            icon: 'warning',
+            text: 'لا يوجد نتائج على هذه الدولة',
+            timer: 1500,
+            position: 'top',
+            showConfirmButton: false,
+          })
+        : Swal.fire({
+            text: 'تم جلب البيانات',
+            timer: 1200,
+            position: 'top',
+            showConfirmButton: false,
+            icon: 'success',
+          });
 
       return this.data;
     });
@@ -54,7 +63,7 @@ export class HomeComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         const longitude = position.coords.longitude;
         const latitude = position.coords.latitude;
-        this.callApi(longitude, latitude);
+        // this.callApi(longitude, latitude);
         this.location(longitude, latitude);
         // console.log('location ???? ====> ', longitude, latitude);
       });
@@ -63,15 +72,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  callApi(Longitude: number, Latitude: number) {
-    const url = `https://api-adresse.data.gouv.fr/reverse/?lon=${Longitude}&lat=${Latitude}`;
-    //Call API
-    // console.log('location ???? ====> ', url);
-  }
-
   location(long, lat) {
     this._http.getLocation(lat, long).subscribe((data) => {
       this.pickedCountry = data['countryName'];
+      this.locCountry = data['countryName'];
       this.viewData();
     });
   }
