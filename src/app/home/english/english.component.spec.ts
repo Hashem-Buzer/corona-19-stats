@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ArabicComponent } from './arabic.component';
+import { EnglishComponent } from './english.component';
 
-describe('ArabicComponent', () => {
-  let component: ArabicComponent;
-  let fixture: ComponentFixture<ArabicComponent>;
+describe('EnglishComponent', () => {
+  let component: EnglishComponent;
+  let fixture: ComponentFixture<EnglishComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArabicComponent ]
+      declarations: [ EnglishComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ArabicComponent);
+    fixture = TestBed.createComponent(EnglishComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

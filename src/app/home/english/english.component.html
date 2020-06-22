@@ -1,7 +1,6 @@
 <app-navbar></app-navbar>
 <section id="all">
-  <h4>في COVID-19</h4>
-  <!-- <h1>{{ data[data.length - 1].Country }}</h1> -->
+  <h4>COVID-19 in</h4>
   <div class="form-group">
     <select
       class="form-control countries"
@@ -19,7 +18,7 @@
 
   <div id="cases" class="container">
     <div id="date">
-      اخر تحديث <b>{{ data[data.length - 1].Date | dateAgo }}</b>
+      last update <b>{{ data[data.length - 1].Date | englishDateAgo }}</b>
     </div>
 
     <div class="row">
@@ -27,7 +26,7 @@
         <div id="active" class="divs">
           <div class="info">
             <h3>{{ data[data.length - 1].Active }}</h3>
-            <p>الجارية حالياً</p>
+            <p>Active</p>
           </div>
         </div>
       </div>
@@ -36,7 +35,7 @@
         <div id="confirmed" class="divs">
           <div class="info">
             <h3>{{ data[data.length - 1].Confirmed }}</h3>
-            <p>تم التأكيد</p>
+            <p>Confirmed</p>
           </div>
         </div>
       </div>
@@ -45,7 +44,7 @@
         <div id="deaths" class="divs">
           <div class="info">
             <h3>{{ data[data.length - 1].Deaths }}</h3>
-            <p>حالات الوفاة</p>
+            <p>Deaths</p>
           </div>
         </div>
       </div>
@@ -54,7 +53,7 @@
         <div id="recovered" class="divs">
           <div class="info">
             <h3>{{ data[data.length - 1].Recovered }}</h3>
-            <p>حالات الشفاء</p>
+            <p>Recovered</p>
           </div>
         </div>
       </div>

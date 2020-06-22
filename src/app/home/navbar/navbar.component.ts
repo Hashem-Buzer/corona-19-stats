@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import $ from 'jquery';
 
 @Component({
@@ -7,10 +8,11 @@ import $ from 'jquery';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.checkTheme();
+    this.checkLang();
   }
 
   checkTheme() {
@@ -86,6 +88,29 @@ export class NavbarComponent implements OnInit {
         'linear-gradient(to right, #afb8af, #ffffff)'
       );
       $('#all').css('color', 'black');
+    }
+  }
+
+  checkLang() {
+    if (localStorage.getItem('lang') === 'ar') {
+      this.router.navigate(['/']);
+    } else if (localStorage.getItem('lang') === 'en') {
+      this.router.navigate(['/english']);
+    } else {
+      localStorage.setItem('lang', 'ar');
+      this.router.navigate(['/']);
+    }
+  }
+
+  changeLang() {
+    if (localStorage.getItem('lang') === 'ar') {
+      localStorage.setItem('lang', 'en');
+      this.checkLang();
+    } else if (localStorage.getItem('lang') === 'en') {
+      localStorage.setItem('lang', 'ar');
+      this.checkLang();
+    } else {
+      this.checkLang();
     }
   }
 }

@@ -2,75 +2,11 @@
   background-color: #191e20;
   text-align: center;
   padding: 1% 0;
+  color: white;
 
   small {
-    span {
+    a {
       color: orange;
-    }
-  }
-
-  #sm {
-    // margin: 1.5% 0 0.5% 0;
-
-    img {
-      width: 2.5%;
-      margin: 0.4%;
-      padding: 0.4%;
-      border-radius: 20px;
-      transition: all ease-in-out 0.3s;
-
-      &:hover {
-        cursor: pointer;
-        margin-top: -1%;
-      }
-    }
-
-    #facebook {
-      // border: 1px solid #4267b2;
-
-      &:hover {
-        background-color: #4267b2;
-      }
-    }
-
-    #instagram {
-      // border: 1px solid #bc1888;
-
-      &:hover {
-        background: linear-gradient(
-          45deg,
-          #f09433 0%,
-          #e6683c 25%,
-          #dc2743 50%,
-          #cc2366 75%,
-          #bc1888 100%,
-          #833ab4 50%
-        );
-      }
-    }
-
-    #twitter {
-      // border: 1px solid #1da1f2;
-
-      &:hover {
-        background-color: #1da1f2;
-      }
-    }
-
-    #linkedin {
-      // border: 1px solid #006db0;
-
-      &:hover {
-        background-color: #006db0;
-      }
-    }
-
-    #github {
-      // border: 1px solid wheat;
-
-      &:hover {
-        background-color: rgb(26, 26, 26);
-      }
     }
   }
 }
