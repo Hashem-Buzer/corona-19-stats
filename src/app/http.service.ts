@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -13,5 +13,11 @@ export class HttpService {
 
   getCountries() {
     return this.http.get('https://api.covid19api.com/countries');
+  }
+
+  getLocation(lat, long) {
+    return this.http.get(
+      `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}&localityLanguage=en`
+    );
   }
 }

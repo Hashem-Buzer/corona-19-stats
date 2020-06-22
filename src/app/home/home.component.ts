@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(private _http: HttpService) {}
 
   ngOnInit() {
+    this.getLocation();
     this.viewData();
     this.viewCountries();
   }
@@ -37,5 +38,32 @@ export class HomeComponent implements OnInit {
   pickCountry(country) {
     this.pickedCountry = country;
     this.viewData();
+  }
+
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const longitude = position.coords.longitude;
+        const latitude = position.coords.latitude;
+        this.callApi(longitude, latitude);
+        this.location(longitude, latitude);
+        // console.log('location ???? ====> ', longitude, latitude);
+      });
+    } else {
+      console.log('No support for geolocation');
+    }
+  }
+
+  callApi(Longitude: number, Latitude: number) {
+    const url = `https://api-adresse.data.gouv.fr/reverse/?lon=${Longitude}&lat=${Latitude}`;
+    //Call API
+    // console.log('location ???? ====> ', url);
+  }
+
+  location(long, lat) {
+    this._http.getLocation(lat, long).subscribe((data) => {
+      this.pickedCountry = data['countryName'];
+      this.viewData();
+    });
   }
 }

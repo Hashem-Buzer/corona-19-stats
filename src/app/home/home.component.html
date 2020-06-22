@@ -1,5 +1,5 @@
 <div id="all">
-  <h4>covid-19 in</h4>
+  <h4>COVID-19 in</h4>
   <!-- <h1>{{ data[data.length - 1].Country }}</h1> -->
   <div class="form-group">
     <select
@@ -7,7 +7,13 @@
       id="countries"
       (change)="pickCountry($event.target.value)"
     >
-      <option *ngFor="let country of countriesArr">{{ country }}</option>
+      <optgroup label="Location">
+        <option selected>{{ pickedCountry }}</option>
+      </optgroup>
+
+      <optgroup label="Other">
+        <option *ngFor="let country of countriesArr">{{ country }}</option>
+      </optgroup>
     </select>
   </div>
 
