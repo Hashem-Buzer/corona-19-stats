@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
       this.data.length === 0
         ? Swal.fire({
             icon: 'warning',
-            text: 'لا يوجد نتائج على هذه الدولة',
+            text: 'لا توجد نتائج على هذه الدولة',
             timer: 1500,
             position: 'top',
             showConfirmButton: false,

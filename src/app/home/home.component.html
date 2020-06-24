@@ -11,7 +11,7 @@
         <option selected>{{ locCountry }}</option>
       </optgroup>
 
-      <optgroup label="Other">
+      <optgroup class="countries" label="Other">
         <option *ngFor="let country of countriesArr">{{ country }}</option>
       </optgroup>
     </select>
@@ -23,7 +23,7 @@
     </div>
 
     <div class="row">
-      <div class="col-6">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
         <div id="active" class="divs">
           <div class="info">
             <h3>{{ data[data.length - 1].Active }}</h3>
@@ -32,7 +32,7 @@
         </div>
       </div>
 
-      <div class="col-6">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
         <div id="confirmed" class="divs">
           <div class="info">
             <h3>{{ data[data.length - 1].Confirmed }}</h3>
@@ -41,7 +41,7 @@
         </div>
       </div>
 
-      <div class="col-6">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
         <div id="deaths" class="divs">
           <div class="info">
             <h3>{{ data[data.length - 1].Deaths }}</h3>
@@ -50,7 +50,7 @@
         </div>
       </div>
 
-      <div class="col-6">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
         <div id="recovered" class="divs">
           <div class="info">
             <h3>{{ data[data.length - 1].Recovered }}</h3>
