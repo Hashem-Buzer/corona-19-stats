@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
+    this.checkLang();
     this.checkTheme();
   }
 
@@ -89,6 +90,10 @@ export class NavbarComponent implements OnInit {
       );
       $('#all').css('color', 'black');
     }
+  }
+
+  checkLang() {
+    localStorage.getItem('lang') === null && localStorage.setItem('lang', 'ar');
   }
 
   changeLang() {
