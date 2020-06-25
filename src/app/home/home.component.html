@@ -1,6 +1,7 @@
 <app-navbar></app-navbar>
 <section id="all">
-  <h4>في COVID-19</h4>
+  <h4 *ngIf="lang === 'ar'">في COVID-19</h4>
+  <h4 *ngIf="lang === 'en'">COVID-19 in</h4>
   <!-- <h1>{{ data[data.length - 1].Country }}</h1> -->
   <div class="form-group">
     <select
@@ -18,8 +19,12 @@
   </div>
 
   <div id="cases" class="container">
-    <div id="date">
+    <div id="date" *ngIf="lang === 'ar'">
       اخر تحديث <b>{{ data[data.length - 1].Date | dateAgo }}</b>
+    </div>
+
+    <div id="date" *ngIf="lang === 'en'">
+      last update <b>{{ data[data.length - 1].Date | englishDateAgo }}</b>
     </div>
 
     <div class="row">
@@ -27,7 +32,8 @@
         <div id="active" class="divs">
           <div class="info">
             <h3>{{ data[data.length - 1].Active }}</h3>
-            <p>الجارية حالياً</p>
+            <p *ngIf="lang === 'ar'">الجارية حالياً</p>
+            <p *ngIf="lang === 'en'">Active</p>
           </div>
         </div>
       </div>
@@ -36,7 +42,8 @@
         <div id="confirmed" class="divs">
           <div class="info">
             <h3>{{ data[data.length - 1].Confirmed }}</h3>
-            <p>تم التأكيد</p>
+            <p *ngIf="lang === 'ar'">تم التأكيد</p>
+            <p *ngIf="lang === 'en'">Confirmed</p>
           </div>
         </div>
       </div>
@@ -45,7 +52,8 @@
         <div id="deaths" class="divs">
           <div class="info">
             <h3>{{ data[data.length - 1].Deaths }}</h3>
-            <p>حالات الوفاة</p>
+            <p *ngIf="lang === 'ar'">حالات الوفاة</p>
+            <p *ngIf="lang === 'en'">Deaths</p>
           </div>
         </div>
       </div>
@@ -54,7 +62,8 @@
         <div id="recovered" class="divs">
           <div class="info">
             <h3>{{ data[data.length - 1].Recovered }}</h3>
-            <p>حالات الشفاء</p>
+            <p *ngIf="lang === 'ar'">حالات الشفاء</p>
+            <p *ngIf="lang === 'en'">Recovered</p>
           </div>
         </div>
       </div>

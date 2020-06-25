@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import $ from 'jquery';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.checkTheme();
-    this.checkLang();
   }
 
   checkTheme() {
@@ -91,26 +91,35 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  checkLang() {
-    if (localStorage.getItem('lang') === 'ar') {
-      this.router.navigate(['/']);
-    } else if (localStorage.getItem('lang') === 'en') {
-      this.router.navigate(['/english']);
-    } else {
-      localStorage.setItem('lang', 'ar');
-      this.router.navigate(['/']);
-    }
-  }
-
   changeLang() {
     if (localStorage.getItem('lang') === 'ar') {
       localStorage.setItem('lang', 'en');
-      this.checkLang();
+      Swal.fire({
+        text: 'changing the language...',
+        timer: 2000,
+        timerProgressBar: true,
+        onBeforeOpen: () => {
+          Swal.showLoading();
+          setInterval(() => {
+            const content = Swal.getContent();
+          }, 100);
+        },
+      });
     } else if (localStorage.getItem('lang') === 'en') {
       localStorage.setItem('lang', 'ar');
-      this.checkLang();
+      Swal.fire({
+        text: '...تغيير اللغة',
+        timer: 2000,
+        timerProgressBar: true,
+        onBeforeOpen: () => {
+          Swal.showLoading();
+          setInterval(() => {
+            const content = Swal.getContent();
+          }, 100);
+        },
+      });
     } else {
-      this.checkLang();
+      localStorage.setItem('lang', 'ar');
     }
   }
 }
