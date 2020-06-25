@@ -122,9 +122,7 @@ export class HomeComponent implements OnInit {
       navigator.geolocation.getCurrentPosition((position) => {
         const longitude = position.coords.longitude;
         const latitude = position.coords.latitude;
-        // this.callApi(longitude, latitude);
         this.location(longitude, latitude);
-        // console.log('location ???? ====> ', longitude, latitude);
       });
     } else {
       console.log('No support for geolocation');
