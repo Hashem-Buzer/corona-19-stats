@@ -5,6 +5,10 @@
   padding: 0.5% 20%;
   font-size: 1.3em;
 
+  @media screen and (max-width: 600px) {
+    padding: 0.5% 10%;
+  }
+
   ul {
     width: 100%;
     padding: 0;

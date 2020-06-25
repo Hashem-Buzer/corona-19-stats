@@ -48,11 +48,11 @@ export class NavbarComponent implements OnInit {
           </svg>
       `);
 
-      $('#all').css(
+      $('body').css(
         'background',
         'linear-gradient(to right, #afb8af, #ffffff)'
       );
-      $('#all').css('color', 'black');
+      $('body').css('color', 'black');
       localStorage.setItem('theme', 'dark');
     } else if (localStorage.getItem('theme') === 'dark') {
       $('#theme').html(`
@@ -61,11 +61,11 @@ export class NavbarComponent implements OnInit {
       </svg>
       `);
 
-      $('#all').css(
+      $('body').css(
         'background',
         'linear-gradient(to bottom, #232526, #414345)'
       );
-      $('#all').css('color', 'white');
+      $('body').css('color', 'white');
       localStorage.setItem('theme', 'light');
     } else {
       $('#theme').html(`
@@ -84,11 +84,11 @@ export class NavbarComponent implements OnInit {
           </svg>
       `);
 
-      $('#all').css(
+      $('body').css(
         'background',
         'linear-gradient(to right, #afb8af, #ffffff)'
       );
-      $('#all').css('color', 'black');
+      $('body').css('color', 'black');
     }
   }
 
