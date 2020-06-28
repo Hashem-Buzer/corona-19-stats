@@ -23,8 +23,8 @@ export class HomeComponent implements OnInit {
     }, 2000);
 
     this.getLocation();
-    this.viewData();
     this.viewCountries();
+    // this.viewData();
   }
 
   viewData() {
@@ -108,7 +108,7 @@ export class HomeComponent implements OnInit {
       for (var country in data) {
         this.countriesArr.push(data[country].Country);
       }
-      return this.countriesArr.sort();
+      return this.countriesArr.sort().shift();
     });
   }
 
@@ -119,11 +119,17 @@ export class HomeComponent implements OnInit {
 
   getLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const longitude = position.coords.longitude;
-        const latitude = position.coords.latitude;
-        this.location(longitude, latitude);
-      });
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const longitude = position.coords.longitude;
+          const latitude = position.coords.latitude;
+          this.location(longitude, latitude);
+        },
+        () => {
+          this.pickedCountry = 'Afghanistan';
+          this.viewData();
+        }
+      );
     } else {
       console.log('No support for geolocation');
     }

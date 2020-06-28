@@ -7,11 +7,11 @@
       class="form-control countries"
       (change)="pickCountry($event.target.value)"
     >
-      <optgroup class="countries" label="Location">
+      <optgroup class="countries" label="Location" *ngIf="locCountry">
         <option selected>{{ locCountry }}</option>
       </optgroup>
 
-      <optgroup class="countries" label="Other">
+      <optgroup class="countries" label="Countries">
         <option *ngFor="let country of countriesArr">{{ country }}</option>
       </optgroup>
     </select>
