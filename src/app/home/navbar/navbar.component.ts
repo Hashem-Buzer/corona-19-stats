@@ -16,6 +16,9 @@ export class NavbarComponent implements OnInit {
     this.checkTheme();
   }
 
+  // checks the theme and set the values in the localStorage.
+
+  // DO NOT CHANGE //
   checkTheme() {
     if (localStorage.getItem('theme') === 'light') {
       // this.changeTheme('light');
@@ -30,6 +33,9 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  // changing the theme icon and the theme according to the theme in localStorage.
+
+  // DO NOT CHANGE //
   changeTheme() {
     if (localStorage.getItem('theme') === 'light') {
       $('#theme').html(`
@@ -92,6 +98,9 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+  // checks the language and set the values in the localStorage.
+
+  // DO NOT CHANGE //
   checkLang() {
     localStorage.getItem('lang') === null && localStorage.setItem('lang', 'ar'),
       $('#lang').html(`
@@ -110,6 +119,9 @@ export class NavbarComponent implements OnInit {
       `);
   }
 
+  // changing the language icon and the langauge according to the lang in localStorage.
+
+  // DO NOT CHANGE //
   changeLang() {
     if (localStorage.getItem('lang') === 'ar') {
       localStorage.setItem('lang', 'en');

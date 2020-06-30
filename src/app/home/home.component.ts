@@ -8,12 +8,19 @@ import Swal from 'sweetalert2';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  // data: holds the data from the api in viewData();
   data: any;
+
+  // pickedCountry: holds the current country either from location, from user or by default "Afghanistan || افغانستان";
   pickedCountry: any;
+
+  // locCountry: holds the selected country according the location from getLocation();
   locCountry: any;
 
+  // countriesArr: this is the main array for holding the countries either Ar or En from viewCountries();
   countriesArr = [];
 
+  // EnCountriesArr: has all the countries in English;
   EnCountriesArr = [
     'Afghanistan',
     'Albania',
@@ -222,6 +229,7 @@ export class HomeComponent implements OnInit {
     'Zimbabwe',
   ];
 
+  // ArCountriesArr: has all the countries in Arabic;
   ArCountriesArr = [
     'أفغانستان',
     'ألبانيا',
@@ -430,11 +438,15 @@ export class HomeComponent implements OnInit {
     'زيمبابوي',
   ];
 
+  // lang: responsible for holding the current language from localStorage to show home.component.html in getLang();
   lang: any;
 
   constructor(private _http: HttpService) {}
 
   ngOnInit() {
+    // functions in here will be invoked once the website reloaded;
+
+    // invoking getLang() every 2 seconds to get the language from localStorage;
     setInterval(() => {
       this.getLang();
     }, 2000);
@@ -444,17 +456,26 @@ export class HomeComponent implements OnInit {
     // this.viewData();
   }
 
+  // DO NOT CHANGE//
   viewData() {
+    // checking if the pickedCountry does exist in the arabic array, if yes==> loop in the arabic array to find the picked country in arabic;
     this.ArCountriesArr.includes(this.pickedCountry) &&
       this.ArCountriesArr.forEach((element, i) => {
+        // if this element is equal to the picked country;
         if (element === this.pickedCountry) {
+          // we will change the value of the pickedCountry to the same element Index in the English array;
           this.pickedCountry = this.EnCountriesArr[i];
           console.log('PICKED COUNTRY =====> ', this.pickedCountry);
         }
       });
 
+    // sending pickedCountry to the api in http.service;
     this._http.getData(this.pickedCountry).forEach((data) => {
+      // assign the coming data to this.data;
       this.data = data;
+
+      // if the length of data is greater than 0 will check the language in localStorage to view sweetAlert according to the langage of the page;
+
       if (this.data.length > 0) {
         if (localStorage.getItem('lang') === 'ar') {
           Swal.fire({
@@ -493,42 +514,13 @@ export class HomeComponent implements OnInit {
         }
       }
 
-      // ? this.lang === 'ar'
-      //   ? Swal.fire({
-      //       icon: 'warning',
-      //       text: 'لا توجد نتائج على هذه الدولة',
-      //       timer: 1500,
-      //       position: 'top',
-      //       showConfirmButton: false,
-      //     })
-      //   : Swal.fire({
-      //       icon: 'warning',
-      //       text: 'there are no results for this country',
-      //       timer: 1500,
-      //       position: 'top',
-      //       showConfirmButton: false,
-      //     })
-      // : this.lang === 'ar'
-      // ? Swal.fire({
-      //     text: 'تم جلب البيانات',
-      //     timer: 1200,
-      //     position: 'top',
-      //     showConfirmButton: false,
-      //     icon: 'success',
-      //   })
-      // : Swal.fire({
-      //     text: 'data fetched successfully',
-      //     timer: 2000,
-      //     position: 'top',
-      //     showConfirmButton: false,
-      //     icon: 'success',
-      //   });
-
       return this.data;
     });
   }
 
+  // THIS IS THE FUNCTION THAT SHOULD BE INVOKED WHEN THE LANGUAGE CHANGES FROM NAVBAR //
   viewCountries() {
+    // checking the language to assign either the Arabic array or the English array to the main array;
     if (localStorage.getItem('lang') === 'ar') {
       for (var i = 0; i < this.ArCountriesArr.length; i++) {
         this.countriesArr[i] = { id: i, country: this.ArCountriesArr[i] };
@@ -543,12 +535,14 @@ export class HomeComponent implements OnInit {
     // return this.countriesArr;
   }
 
+  // this function is being invoked from home.component.html when the user select a country;
   pickCountry(country) {
     console.log('COUNTRY=====> ', country);
     this.pickedCountry = country;
     this.viewData();
   }
 
+  // DO NOT CHANGE //
   getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -567,6 +561,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  // DO NOT CHANGE //
   location(long, lat) {
     this._http.getLocation(lat, long).subscribe((data) => {
       this.pickedCountry = data['countryName'];
@@ -575,6 +570,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // DO NOT CHANGE //
   getLang() {
     this.lang = localStorage.getItem('lang');
     // this.viewCountries();
