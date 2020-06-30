@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import $ from 'jquery';
 import Swal from 'sweetalert2';
+import { HttpService } from 'src/app/http.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,12 +10,14 @@ import Swal from 'sweetalert2';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private httpService: HttpService) { }
 
   ngOnInit() {
     this.checkLang();
     this.checkTheme();
   }
+
+
 
   // checks the theme and set the values in the localStorage.
 
@@ -123,6 +126,12 @@ export class NavbarComponent implements OnInit {
 
   // DO NOT CHANGE //
   changeLang() {
+
+    /*****/
+    this.httpService.changeLang()
+    /*****/
+
+
     if (localStorage.getItem('lang') === 'ar') {
       localStorage.setItem('lang', 'en');
       $('#lang').html('ع').css('font-weight', 'lighter');
@@ -168,5 +177,8 @@ export class NavbarComponent implements OnInit {
     } else {
       localStorage.setItem('lang', 'ar');
     }
+
   }
+
+
 }
