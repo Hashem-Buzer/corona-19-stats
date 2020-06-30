@@ -10,14 +10,12 @@ import { HttpService } from 'src/app/http.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  constructor(private router: Router, private httpService: HttpService) { }
+  constructor(private router: Router, private httpService: HttpService) {}
 
   ngOnInit() {
     this.checkLang();
     this.checkTheme();
   }
-
-
 
   // checks the theme and set the values in the localStorage.
 
@@ -126,14 +124,11 @@ export class NavbarComponent implements OnInit {
 
   // DO NOT CHANGE //
   changeLang() {
-
     /*****/
-    this.httpService.changeLang()
+    this.httpService.changeLang();
     /*****/
-
 
     if (localStorage.getItem('lang') === 'ar') {
-      localStorage.setItem('lang', 'en');
       $('#lang').html('ع').css('font-weight', 'lighter');
 
       Swal.fire({
@@ -147,8 +142,8 @@ export class NavbarComponent implements OnInit {
           }, 100);
         },
       });
+      localStorage.setItem('lang', 'en');
     } else if (localStorage.getItem('lang') === 'en') {
-      localStorage.setItem('lang', 'ar');
       $('#lang').html(`
           <svg
             class="bi bi-type"
@@ -174,11 +169,9 @@ export class NavbarComponent implements OnInit {
           }, 100);
         },
       });
+      localStorage.setItem('lang', 'ar');
     } else {
       localStorage.setItem('lang', 'ar');
     }
-
   }
-
-
 }

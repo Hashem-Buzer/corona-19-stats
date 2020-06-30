@@ -441,15 +441,14 @@ export class HomeComponent implements OnInit {
   // lang: responsible for holding the current language from localStorage to show home.component.html in getLang();
   lang: any;
 
-  constructor(private _http: HttpService) { }
+  constructor(private _http: HttpService) {}
 
   ngOnInit() {
-
     /******/
-    this._http.reader$.subscribe(language => {
-      console.log("observable", language)
+    this._http.reader$.subscribe(() => {
+      // console.log('observable', language);
       this.viewCountries();
-    })
+    });
     /*****/
 
     // functions in here will be invoked once the website reloaded;
@@ -528,12 +527,13 @@ export class HomeComponent implements OnInit {
 
   // THIS IS THE FUNCTION THAT SHOULD BE INVOKED WHEN THE LANGUAGE CHANGES FROM NAVBAR //
   viewCountries() {
+    console.log('-----INVOKED-----');
     // checking the language to assign either the Arabic array or the English array to the main array;
-    if (localStorage.getItem('lang') === 'ar') {
+    if (localStorage.getItem('lang') === 'en') {
       for (var i = 0; i < this.ArCountriesArr.length; i++) {
         this.countriesArr[i] = { id: i, country: this.ArCountriesArr[i] };
       }
-    } else if (localStorage.getItem('lang') === 'en') {
+    } else if (localStorage.getItem('lang') === 'ar') {
       for (var i = 0; i < this.EnCountriesArr.length; i++) {
         this.countriesArr[i] = { id: i, country: this.EnCountriesArr[i] };
       }

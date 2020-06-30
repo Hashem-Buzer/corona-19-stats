@@ -5,25 +5,23 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 /******/
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class HttpService {
-
   /******/
   private listner = new Subject<any>();
   reader$ = this.listner.asObservable();
-  language = "ar"
+  language = localStorage.getItem('lang');
   /******/
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   changeLang() {
-    if (this.language == "ar") this.language = "en"
-    else this.language = "ar"
+    // if (this.language == 'ar') this.language = 'en';
+    // else this.language = 'ar';
 
-    this.listner.next(this.language)
+    this.listner.next();
   }
 
   getData(country) {
