@@ -441,9 +441,17 @@ export class HomeComponent implements OnInit {
   // lang: responsible for holding the current language from localStorage to show home.component.html in getLang();
   lang: any;
 
-  constructor(private _http: HttpService) {}
+  constructor(private _http: HttpService) { }
 
   ngOnInit() {
+
+    /******/
+    this._http.reader$.subscribe(language => {
+      console.log("observable", language)
+      this.viewCountries();
+    })
+    /*****/
+
     // functions in here will be invoked once the website reloaded;
 
     // invoking getLang() every 2 seconds to get the language from localStorage;
