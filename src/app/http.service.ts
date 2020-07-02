@@ -9,19 +9,25 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class HttpService {
-  /******/
+  // this is for observable to pass the language value to home.componenet.ts;
   private listner = new Subject<any>();
   reader$ = this.listner.asObservable();
-  language = 'ar';
-  /******/
+  language = localStorage.getItem('lang');
 
   constructor(private http: HttpClient) {}
 
   changeLang() {
+    // if the language value was 'en' ?
+    //// change it to 'ar';
+    // if it was 'en' ?
+    //// change it to 'ar';
+    // if it has no value ?
+    //// by default will assign 'ar';
     if (this.language == 'en') this.language = 'ar';
     else if (this.language == 'ar') this.language = 'en';
     else this.language = 'ar';
 
+    // send the language to the next of the listener subject;
     this.listner.next(this.language);
   }
 

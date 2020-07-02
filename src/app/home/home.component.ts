@@ -438,21 +438,14 @@ export class HomeComponent implements OnInit {
   constructor(private _http: HttpService) {}
 
   ngOnInit() {
-    /******/
+    // observable for changing language
     this._http.reader$.subscribe((language) => {
-      // console.log('observable', language);
-      // alert(language);
       this.lang = language;
 
       this.getLang();
       this.viewCountries();
     });
-    /*****/
 
-    // invoking getLang() every 2 seconds to get the language from localStorage;
-    // setInterval(() => {
-    //   this.getLang();
-    // }, 2000);
     this.getLang();
     this.getLocation();
     this.viewCountries();
@@ -466,7 +459,6 @@ export class HomeComponent implements OnInit {
         if (element === this.pickedCountry) {
           // we will change the value of the pickedCountry to the same element Index in the English array;
           this.pickedCountry = this.EnCountriesArr[i];
-          console.log('PICKED COUNTRY =====> ', this.pickedCountry);
         }
       });
 
@@ -476,12 +468,11 @@ export class HomeComponent implements OnInit {
       this.data = data;
 
       // if the length of data is greater than 0 will check the language in localStorage to view sweetAlert according to the langage of the page;
-
       if (this.data.length > 0) {
         if (localStorage.getItem('lang') === 'ar') {
           Swal.fire({
             text: 'تم جلب البيانات',
-            timer: 1200,
+            timer: 1000,
             position: 'top',
             showConfirmButton: false,
             icon: 'success',
@@ -489,7 +480,7 @@ export class HomeComponent implements OnInit {
         } else {
           Swal.fire({
             text: 'Data fetched',
-            timer: 2000,
+            timer: 1500,
             position: 'top',
             showConfirmButton: false,
             icon: 'success',
@@ -515,17 +506,18 @@ export class HomeComponent implements OnInit {
         }
       }
 
+      // invoking viewCountries to change the language of the dropdown;
       this.viewCountries();
     });
   }
 
-  // THIS IS THE FUNCTION THAT SHOULD BE INVOKED WHEN THE LANGUAGE CHANGES FROM NAVBAR //
   viewCountries() {
+    // checking tha language of the picked country to change it according the current language;
     if (localStorage.getItem('lang') === 'ar') {
       this.EnCountriesArr.forEach((element, i) => {
         // if this element is equal to the picked country;
         if (element === this.pickedCountry) {
-          // we will change the value of the pickedCountry to the same element Index in the English array;
+          // we will change the value of the pickedCountry to the same element Index in the Arabic array;
           this.pickedCountry = this.ArCountriesArr[i];
         }
       });
@@ -538,44 +530,23 @@ export class HomeComponent implements OnInit {
         }
       });
     }
-
-    // this.pickedCountry = this.pickedCountry;
-    console.log('-----INVOKED-----');
-    // checking the language to assign either the Arabic array or the English array to the main array;
-    // if (localStorage.getItem('lang') === 'ar') {
-    //   for (var i = 0; i < this.ArCountriesArr.length; i++) {
-    //     this.countriesArr[i] = { id: i, country: this.ArCountriesArr[i] };
-    //   }
-    // } else if (localStorage.getItem('lang') === 'en') {
-    //   for (var i = 0; i < this.EnCountriesArr.length; i++) {
-    //     this.countriesArr[i] = { id: i, country: this.EnCountriesArr[i] };
-    //   }
-    // }
-    console.log('THIS IS PICKED FROM VIEW =======> ', this.pickedCountry);
-    // console.log('COUNTRIES===> ', this.countriesArr);
-    // return this.countriesArr;
   }
 
-  // this function is being invoked from home.component.html when the user select a country;
   pickCountry(country) {
-    console.log('COUNTRY=====> ', country);
+    // this function is being invoked from home.component.html when the user select a country;
+
+    // I assigned the coming value that user has fucked;
     this.pickedCountry = country;
 
-    // if (localStorage.getItem('lang') === 'ar') {
-    //   this.EnCountriesArr.forEach((element, i) => {
-    //     // if this element is equal to the picked country;
-    //     if (element === this.pickedCountry) {
-    //       // we will change the value of the pickedCountry to the same element Index in the English array;
-    //       this.pickedCountry = this.ArCountriesArr[i];
-    //     }
-    //   });
-    // }
-
+    // invoking viewData to bring the data for this pickedCountry;
     this.viewData();
   }
 
-  // DO NOT CHANGE //
   getLocation() {
+    // in this function i get the Longitude and Latitude of the user to send them to location();
+    //// if something wrong happened like the user blocked the access;
+    ////// pickedCountry will take 'Afghanistan' as a default value;
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -589,22 +560,22 @@ export class HomeComponent implements OnInit {
         }
       );
     } else {
-      console.log('No support for geolocation');
+      alert('No support for geolocation');
     }
   }
 
-  // DO NOT CHANGE //
   location(long, lat) {
+    // this function takes Longitude and Latitude from getLocation() to be sent to an api to give me informations about these measurements;
     this._http.getLocation(lat, long).subscribe((data) => {
+      // i assign the Country Name of the  coming data to pickedCountry;
       this.pickedCountry = data['countryName'];
-      // this.locCountry = data['countryName'];
+      // invoking viewData to get the data of the location country;
       this.viewData();
     });
   }
 
-  // DO NOT CHANGE //
   getLang() {
+    // getting the language from localStorage and assigning it to lang variable to be read from home.component.html;
     this.lang = localStorage.getItem('lang');
-    // this.viewCountries();
   }
 }
