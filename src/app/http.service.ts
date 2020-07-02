@@ -12,16 +12,17 @@ export class HttpService {
   /******/
   private listner = new Subject<any>();
   reader$ = this.listner.asObservable();
-  language = localStorage.getItem('lang');
+  language = 'ar';
   /******/
 
   constructor(private http: HttpClient) {}
 
   changeLang() {
-    // if (this.language == 'ar') this.language = 'en';
-    // else this.language = 'ar';
+    if (this.language == 'en') this.language = 'ar';
+    else if (this.language == 'ar') this.language = 'en';
+    else this.language = 'ar';
 
-    this.listner.next();
+    this.listner.next(this.language);
   }
 
   getData(country) {

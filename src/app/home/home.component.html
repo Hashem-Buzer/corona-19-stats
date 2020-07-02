@@ -7,21 +7,27 @@
       class="form-control countries"
       (change)="pickCountry($event.target.value)"
     >
-      <optgroup class="countries" label="Current" *ngIf="pickedCountry">
+      <optgroup
+        *ngIf="lang === 'en' && pickedCountry"
+        class="countries"
+        label="Current country"
+      >
         <option>{{ pickedCountry }}</option>
       </optgroup>
 
-      <!-- <optgroup class="countries" label="Countries">
-        <option *ngFor="let country of countriesArr">{{
-          country.country
-        }}</option>
-      </optgroup> -->
+      <optgroup
+        *ngIf="lang === 'ar' && pickedCountry"
+        class="countries"
+        label="الدولة الحالية"
+      >
+        <option>{{ pickedCountry }}</option>
+      </optgroup>
 
       <optgroup *ngIf="lang === 'en'" class="countries" label="Countries">
         <option *ngFor="let country of EnCountriesArr">{{ country }}</option>
       </optgroup>
 
-      <optgroup *ngIf="lang === 'ar'" class="countries" label="Countries">
+      <optgroup *ngIf="lang === 'ar'" class="countries" label="الدول">
         <option *ngFor="let country of ArCountriesArr">{{ country }}</option>
       </optgroup>
     </select>

@@ -14,9 +14,6 @@ export class HomeComponent implements OnInit {
   // pickedCountry: holds the current country either from location, from user or by default "Afghanistan || افغانستان";
   pickedCountry: any;
 
-  // countriesArr: this is the main array for holding the countries either Ar or En from viewCountries();
-  countriesArr = [];
-
   // EnCountriesArr: has all the countries in English;
   EnCountriesArr = [
     'Afghanistan',
@@ -442,25 +439,25 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     /******/
-    this._http.reader$.subscribe(() => {
+    this._http.reader$.subscribe((language) => {
       // console.log('observable', language);
+      // alert(language);
+      this.lang = language;
+
+      this.getLang();
       this.viewCountries();
     });
     /*****/
 
-    // functions in here will be invoked once the website reloaded;
-
     // invoking getLang() every 2 seconds to get the language from localStorage;
-    setInterval(() => {
-      this.getLang();
-    }, 2000);
-
+    // setInterval(() => {
+    //   this.getLang();
+    // }, 2000);
+    this.getLang();
     this.getLocation();
     this.viewCountries();
-    // this.viewData();
   }
 
-  // DO NOT CHANGE//
   viewData() {
     // checking if the pickedCountry does exist in the arabic array, if yes==> loop in the arabic array to find the picked country in arabic;
     this.ArCountriesArr.includes(this.pickedCountry) &&
