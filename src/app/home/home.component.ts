@@ -521,23 +521,42 @@ export class HomeComponent implements OnInit {
         }
       }
 
-      return this.data;
+      this.viewCountries();
     });
   }
 
   // THIS IS THE FUNCTION THAT SHOULD BE INVOKED WHEN THE LANGUAGE CHANGES FROM NAVBAR //
   viewCountries() {
+    if (localStorage.getItem('lang') === 'ar') {
+      this.EnCountriesArr.forEach((element, i) => {
+        // if this element is equal to the picked country;
+        if (element === this.pickedCountry) {
+          // we will change the value of the pickedCountry to the same element Index in the English array;
+          this.pickedCountry = this.ArCountriesArr[i];
+        }
+      });
+    } else if (localStorage.getItem('lang') === 'en') {
+      this.ArCountriesArr.forEach((element, i) => {
+        // if this element is equal to the picked country;
+        if (element === this.pickedCountry) {
+          // we will change the value of the pickedCountry to the same element Index in the English array;
+          this.pickedCountry = this.EnCountriesArr[i];
+        }
+      });
+    }
+
+    // this.pickedCountry = this.pickedCountry;
     console.log('-----INVOKED-----');
     // checking the language to assign either the Arabic array or the English array to the main array;
-    if (localStorage.getItem('lang') === 'en') {
-      for (var i = 0; i < this.ArCountriesArr.length; i++) {
-        this.countriesArr[i] = { id: i, country: this.ArCountriesArr[i] };
-      }
-    } else if (localStorage.getItem('lang') === 'ar') {
-      for (var i = 0; i < this.EnCountriesArr.length; i++) {
-        this.countriesArr[i] = { id: i, country: this.EnCountriesArr[i] };
-      }
-    }
+    // if (localStorage.getItem('lang') === 'ar') {
+    //   for (var i = 0; i < this.ArCountriesArr.length; i++) {
+    //     this.countriesArr[i] = { id: i, country: this.ArCountriesArr[i] };
+    //   }
+    // } else if (localStorage.getItem('lang') === 'en') {
+    //   for (var i = 0; i < this.EnCountriesArr.length; i++) {
+    //     this.countriesArr[i] = { id: i, country: this.EnCountriesArr[i] };
+    //   }
+    // }
     console.log('THIS IS PICKED FROM VIEW =======> ', this.pickedCountry);
     // console.log('COUNTRIES===> ', this.countriesArr);
     // return this.countriesArr;
@@ -547,6 +566,17 @@ export class HomeComponent implements OnInit {
   pickCountry(country) {
     console.log('COUNTRY=====> ', country);
     this.pickedCountry = country;
+
+    // if (localStorage.getItem('lang') === 'ar') {
+    //   this.EnCountriesArr.forEach((element, i) => {
+    //     // if this element is equal to the picked country;
+    //     if (element === this.pickedCountry) {
+    //       // we will change the value of the pickedCountry to the same element Index in the English array;
+    //       this.pickedCountry = this.ArCountriesArr[i];
+    //     }
+    //   });
+    // }
+
     this.viewData();
   }
 
@@ -573,7 +603,7 @@ export class HomeComponent implements OnInit {
   location(long, lat) {
     this._http.getLocation(lat, long).subscribe((data) => {
       this.pickedCountry = data['countryName'];
-      this.locCountry = data['countryName'];
+      // this.locCountry = data['countryName'];
       this.viewData();
     });
   }
