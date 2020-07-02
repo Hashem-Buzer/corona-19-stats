@@ -14,9 +14,6 @@ export class HomeComponent implements OnInit {
   // pickedCountry: holds the current country either from location, from user or by default "Afghanistan || افغانستان";
   pickedCountry: any;
 
-  // locCountry: holds the selected country according the location from getLocation();
-  locCountry: any;
-
   // countriesArr: this is the main array for holding the countries either Ar or En from viewCountries();
   countriesArr = [];
 

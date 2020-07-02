@@ -105,14 +105,11 @@ export class NavbarComponent implements OnInit {
   checkLang() {
     if (localStorage.getItem('lang') === 'en') {
       localStorage.setItem('lang', 'ar');
-      this.changeLang();
     } else if (localStorage.getItem('lang') === 'ar') {
       localStorage.setItem('lang', 'en');
-      this.changeLang();
-    } else {
-      // localStorage.setItem('lang', 'ar');
-      this.changeLang();
     }
+    // localStorage.setItem('lang', 'ar');
+    this.changeLang();
 
     // localStorage.getItem('lang') === null && localStorage.setItem('lang', 'ar'),
     //   $('#lang').html(`
@@ -139,7 +136,7 @@ export class NavbarComponent implements OnInit {
       $('#lang').html('ع').css('font-weight', 'lighter');
 
       Swal.fire({
-        text: 'changing the language...',
+        text: 'Setting up the language...',
         timer: 2000,
         timerProgressBar: true,
         onBeforeOpen: () => {
@@ -166,7 +163,7 @@ export class NavbarComponent implements OnInit {
           </svg>
       `);
       Swal.fire({
-        text: '...تغيير اللغة',
+        text: '...إعداد اللغة',
         timer: 2000,
         timerProgressBar: true,
         onBeforeOpen: () => {
