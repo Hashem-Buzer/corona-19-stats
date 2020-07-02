@@ -503,7 +503,7 @@ export class HomeComponent implements OnInit {
             timer: 1500,
             position: 'top',
             showConfirmButton: false,
-          });
+          }).then(() => this.viewCountries());
         } else {
           Swal.fire({
             icon: 'warning',
@@ -511,7 +511,7 @@ export class HomeComponent implements OnInit {
             timer: 1500,
             position: 'top',
             showConfirmButton: false,
-          });
+          }).then(() => this.viewCountries());
         }
       }
 
