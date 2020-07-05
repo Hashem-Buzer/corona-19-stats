@@ -516,17 +516,16 @@ export class HomeComponent implements OnInit {
     // in this function i get the Longitude and Latitude of the user to send them to location();
     //// if something wrong happened like the user blocked the access;
     ////// pickedCountry will take 'Afghanistan' as a default value;
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const longitude = position.coords.longitude;
           const latitude = position.coords.latitude;
-          this.location(longitude, latitude);
+          return this.location(longitude, latitude);
         },
         () => {
           this.pickedCountry = 'Afghanistan';
-          this.viewData();
+          return this.viewData();
         }
       );
     } else {
