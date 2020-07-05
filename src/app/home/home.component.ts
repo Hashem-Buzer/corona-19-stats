@@ -521,11 +521,11 @@ export class HomeComponent implements OnInit {
         (position) => {
           const longitude = position.coords.longitude;
           const latitude = position.coords.latitude;
-          return this.location(longitude, latitude);
+          this.location(longitude, latitude);
         },
         () => {
           this.pickedCountry = 'Afghanistan';
-          return this.viewData();
+          this.viewData();
         }
       );
     } else {
